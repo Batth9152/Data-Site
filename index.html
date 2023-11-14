@@ -1,0 +1,106 @@
+<!-- Author: Jaskaran Shergill -->
+<!-- Redesigned version of the original website -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="style.css" />
+		<script defer src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script defer src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.27.4.min.js"></script>
+		<script defer src="index.js"></script>
+		<title>Electric Car Telemetrics and Communication System</title>
+	</head>
+	<body>
+		<!-- Notification Container - Holds all the notifications on the top right of the page -->
+		<div id="notification-container"></div>
+
+		<!-- Control Panel on the left side of the screen -->
+		<div id="left">
+			<!-- Display the battery data numbers - Contained to center horizontally -->
+			<div id="battery-container">
+				<table id="battery-data">
+					<!-- First row (Headers) -->
+					<tr>
+						<td>Ah Left</td>
+						<td>Ah Used (Past Minute)</td>
+					</tr>
+					<!-- Second row (Values) -->
+					<tr class="big-text">
+						<td id="ah-left">0</td>
+						<td id="ah-pastmin">0</td>
+					</tr>
+				</table>
+			</div>
+			<!-- Table for control buttons -->
+			<table id="control-panel">
+				<!-- Row for header "Send Target" -->
+				<tr>
+					<td></td>
+					<td>Send Target</td>
+					<td></td>
+				</tr>
+				<!-- Send Target Buttons -->
+				<tr id="push-down">
+					<td><button onclick="sendSignalSlower()">Slow Down</button></td>
+					<td><button onclick="sendSignalOnspeed()">Center</button></td>
+					<td><button onclick="sendSignalFaster()">Speed Up</button></td>
+				</tr>
+				<!-- Row for header "Prediction mode" -->
+				<tr>
+					<td></td>
+					<td>Prediction Mode</td>
+					<td></td>
+				</tr>
+				<!-- Send Target Buttons -->
+				<tr>
+					<td><button onclick="autoModeSet()">Automatic</button></td>
+					<td><button onclick="semiAutoModeSet()">Semi-Auto</button></td>
+					<td><button onclick="manModeSet()">Manual</button></td>
+				</tr>
+			</table>
+
+			<!-- Send Target Input/Button -->
+			<div id="target-ah">
+				<input type="text" id="target-val" placeholder="TARGET AH / MIN" />
+				<button onclick="sendTarget()">SEND</button>
+			</div>
+
+			<!-- Divider -->
+			<div id="line-container">
+				<div class="line"></div>
+			</div>
+
+			<!-- Total Time Input/Button -->
+			<div id="total-time">
+				<input type="text" id="total-ah-input" placeholder="TOTAL TIME (MINUTES)" />
+				<button onclick="updateTime()">UPDATE</button>
+			</div>
+
+			<!-- Total Battery Ah Input -->
+			<div id="total-ah">
+				<input type="text" id="battery-total" placeholder="BATTERY TOTAL AH" />
+			</div>
+
+			<!-- Start Race Container -->
+			<div id="race-button">
+				<button id="start-race" onclick="startRace()">Start Race</button>
+			</div>
+		</div>
+		<!-- Right side -->
+		<div id="right">
+			<!-- Graphs -->
+			<div id="chartTotalAh"></div>
+			<div id="chartAhMin"></div>
+			<div id="chartAh"></div>
+			<div id="chartV"></div>
+			<div id="chartA"></div>
+			<div id="chartS"></div>
+			<div id="chartD"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,263 @@
+/* Author: Jaskaran Shergill */
+/* Redesigned version of the original website */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #1e1e1e;
+	color: white;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+/* Divide the screen into two sections */
+/* Used position: fixed instead of max-height so you can scroll from anywhere on the screen  */
+#left {
+	position: fixed;
+	width: 50%;
+	height: 100%;
+	font-family: "Inter";
+}
+
+#right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 50%;
+	height: 100vh;
+	z-index: -1;
+}
+
+/* Base button/input styling */
+button,
+input {
+	background: rgba(255, 255, 255, 0.1) !important;
+	padding: 0 !important;
+	outline: none !important;
+	border: none !important;
+	color: white !important;
+	transition: 0.3s background !important;
+}
+
+button {
+	cursor: pointer !important;
+}
+
+button:hover {
+	background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Battery Data (massive text top left) */
+#battery-container {
+	display: flex;
+	justify-content: center;
+}
+
+#battery-data {
+	width: 75%;
+	text-align: center;
+	padding: 4%;
+	padding-top: 10%;
+}
+
+#battery-data td {
+	width: 50%;
+}
+
+/* Making the numbers bigger */
+.big-text {
+	font-size: 90px;
+	font-weight: 400;
+	transform: translateZ(0); /* Remove the blurriness from the text */
+}
+
+/* Control Panel */
+#control-panel {
+	width: 100%;
+	padding: 2.5%;
+	text-align: center;
+}
+
+#control-panel td {
+	width: 33%;
+	padding-bottom: 1%;
+}
+
+#control-panel td button {
+	width: 75%;
+	height: 6vh;
+	border-radius: 13px;
+	font-size: 22px;
+}
+
+/* Push some of the elements down to seperate them */
+#push-down td {
+	padding-bottom: 3%;
+}
+
+/* Target Ah Input/Button */
+#target-ah {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#target-ah button {
+	height: 40px;
+	width: 80px;
+	border-radius: 0px 13px 13px 0px;
+	font-size: 15px;
+	transform: translateX(2px);
+}
+
+#target-ah input {
+	height: 40px;
+	width: 400px;
+	border-radius: 13px 0px 0px 13px;
+	font-size: 15px;
+	text-indent: 10px;
+	transform: translateX(-2px);
+}
+
+/* Total Time Input/Button */
+#total-time {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 4%;
+}
+
+#total-time button {
+	height: 40px;
+	width: 80px;
+	border-radius: 0px 13px 13px 0px;
+	font-size: 15px;
+	transform: translateX(2px);
+}
+
+#total-time button:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+#total-time input {
+	height: 40px;
+	width: 400px;
+	border-radius: 13px 0px 0px 13px;
+	font-size: 15px;
+	text-indent: 10px;
+	transform: translateX(-2px);
+}
+
+/* Total Ah Input */
+#total-ah {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 1%;
+}
+
+#total-ah input {
+	height: 40px;
+	width: 484px;
+	border-radius: 13px;
+	color: white;
+	font-size: 15px;
+	text-indent: 10px;
+	transform: translateX(-2px);
+}
+
+/* Race Button Container */
+#race-button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 3%;
+}
+
+#start-race {
+	width: 18%;
+	height: 50px;
+	border-radius: 13px;
+	font-size: 20px;
+}
+
+/* Dividing Line */
+
+#line-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 4%;
+}
+
+.line {
+	width: 15%;
+	border: 1px solid gray;
+}
+
+/* Notification system */
+#notification-container {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	color: white;
+	font-family: "Inter", sans-serif;
+	font-size: 13px;
+	overflow: visible;
+}
+
+.notification {
+	background-color: #1c1c1c;
+	padding: 20px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	animation: fadeIn 0.5s ease-out forwards;
+	z-index: 100;
+}
+
+.title {
+	font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+
+.close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	font-size: 15px;
+	user-select: none;
+}
+
+#time-bar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: #1c1c1c;
+	width: 100%;
+	height: 5px;
+}
+
+#time-left {
+	width: 100%;
+	height: 100%;
+	background-color: #45a049;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
