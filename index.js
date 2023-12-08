@@ -81,10 +81,37 @@ pubnub.addListener({
 
 // System updates
 const submitUpdate = (anEntry, anUpdate) => {
+	var web = {
+        Destination: "Monitor",
+		Type: "Receive/Send", // need to be updated
+		TotalBattery : anUpdate.batteryTotalAh,
+		Battery_percentage: "Float",
+		Time: anUpdate.remainingTime,
+		Max_time: getTime(),
+		speed: anUpdate.dataS,
+		Amps: anUpdate.dataA,
+		Voltage: anUpdate.dataVTotal,
+		Total_ahs: anUpdate.totalAh,
+		Amp_hours: anUpdate.dataAh,
+
+    };
+	var phone = {
+		Destination: "Phone",
+		Type: "Receive",
+		Battery_percentage: "Float",
+		Time: anUpdate.remainingTime,
+		speed: anUpdate.dataS,
+		update_phone: {
+		Max_time: getTime(),
+		Total_ahs: anUpdate.totalAh,
+		Amp_hours: anUpdate.dataAhLeft,
+	  
+	}};
 	pubnub.publish(
+		
 		{
 			channel: theChannel,
-			message: {entry: anEntry, update: anUpdate},
+			message: {entry: anEntry, monitor: JSON.stringify(web), phone: JSON.stringify(phone), update: anUpdate},
 		},
 		function (status, response) {
 			if (status.error) {
