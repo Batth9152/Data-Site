@@ -81,10 +81,38 @@ pubnub.addListener({
 
 // System updates
 const submitUpdate = (anEntry, anUpdate) => {
+	var web = {
+        Destination: "Monitor",
+		Type: ["Receive","Send"], // don't know how to pick either one of them depending on if we are receiving or sending
+		TotalBattery : anUpdate.batteryTotalAh,
+		Battery_percentage: "Float", //Couldn't find the variable 
+		Time: anUpdate.remainingTime,
+		Max_time: getTime(),
+		speed: anUpdate.dataS,
+		Amps: anUpdate.dataA,
+		Voltage: anUpdate.dataVTotal,
+		Total_ahs: anUpdate.totalAh,
+		Amp_hours: anUpdate.dataAh,
+		Ah_left: anUpdate.dataAhLeft,
+
+    };
+	var phone = {
+		Destination: "Phone",
+		Type: "Receive",
+		Battery_percentage: "Float", //Couldn't find the variable 
+		Time: anUpdate.remainingTime,
+		speed: anUpdate.dataS,
+		update_phone: {
+		Max_time: getTime(),
+		Total_ahs: anUpdate.totalAh,
+		Amp_hours: anUpdate.dataAhLeft,
+	  
+	}};
 	pubnub.publish(
+		
 		{
 			channel: theChannel,
-			message: {entry: anEntry, update: anUpdate},
+			message: {entry: anEntry, monitor: JSON.stringify(web), phone: JSON.stringify(phone), update: anUpdate},
 		},
 		function (status, response) {
 			if (status.error) {
@@ -431,7 +459,7 @@ const sendTarget = () => {
 	submitUpdate("Houston", {Target: targetAh});
 	//test
 
-	predictDataAhIn(0, 10);
+	predictDataAhIn(0, 0);
 };
 
 // Set which prediction mode the Raspberry Pi is in.
