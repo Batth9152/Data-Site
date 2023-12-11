@@ -1,4 +1,6 @@
+!Note, this file is not related to Bluevale or the WRDSB school board.
+
 # Data-Site
 
-Bluevale electric car data mangement website code file.
+Data management website code file.
 
