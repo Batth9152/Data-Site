@@ -1,4 +1,4 @@
-// Authors: Jaskaran Shergill, Austin Wang, and Shiming He
+// Authors: Harman Batth, Jaskaran Shergill, Austin Wang, and Shiming He
 // Original Author: Austin Wang
 // Date Modified: 2023-11-10
 // Created to be able to be used with the new generation telementery and communication system
